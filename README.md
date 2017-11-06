@@ -33,21 +33,21 @@ C. Include *js* and *css* in the head of the page.
 D. Paste this code where you want to see the button
 
 ```html
-	<script type="text/javascript">
-		CoinWidgetCom.go({
-			wallet_address: "34tCGYAz3nhVHrR2mVghX1CmzCRn42Xjnd"
-			, currency: "bitcoin"
-			, counter: "count"
-			, alignment: "bl"
-			, qrcode: false
-			, auto_show: false
-			, auto_show: true
-			, lbl_button: "buy me a beer"
-			, lbl_address: "Donate Bitcoin to this Address:"
-			, lbl_count: "donations"
-			, lbl_amount: "BTC"
-		});
-	</script>
+<script type="text/javascript">
+	CoinWidgetCom.go({
+		wallet_address: "34tCGYAz3nhVHrR2mVghX1CmzCRn42Xjnd"
+		, currency: "bitcoin"
+		, counter: "count"
+		, alignment: "bl"
+		, qrcode: false
+		, auto_show: false
+		, auto_show: true
+		, lbl_button: "buy me a beer"
+		, lbl_address: "Donate Bitcoin to this Address:"
+		, lbl_count: "donations"
+		, lbl_amount: "BTC"
+	});
+</script>
 ```
 
 E. __Customize!__
