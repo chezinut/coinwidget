@@ -32,8 +32,8 @@ C. Include *js* and *css* in the head of the page.
 
 D. Paste this code where you want to see the button
 
-```
-	<script>
+```html
+	<script type="text/javascript">
 		CoinWidgetCom.go({
 			wallet_address: "34tCGYAz3nhVHrR2mVghX1CmzCRn42Xjnd"
 			, currency: "bitcoin"
