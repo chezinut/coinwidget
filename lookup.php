@@ -89,12 +89,13 @@ THE SOFTWARE.
 	
 	function get_dash($address) {
 		$return = array();
-		$data = get_request('https://prohashing.com/explorerJson/getAddress?coin_id=42&address='.$address);
+		// https://chain.so/api#get-display-data-address
+		$data = get_request('https://chain.so/api/v2/address/DASH/'.$address);
 		if (!empty($data)) {
 			$data = json_decode($data);
 			$return += array(
-				'count' => (int) $data->transactionCount,
-				'amount' => (float) $data->balance
+				'count' => (int) $data->data->total_txs,
+				'amount' => (float) $data->data->balance
 			);
 			return $return;
 		}
