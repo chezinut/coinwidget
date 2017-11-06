@@ -1,7 +1,6 @@
 <?php
 
-/** -
-
+/**
 Donations welcome:
 	BTC: 122MeuyZpYz4GSHNrF98e6dnQCXZfHJeGS
 	LTC: LY1L6M6yG26b4sRkLv4BbkmHhPn8GR5fFm
@@ -9,7 +8,7 @@ Donations welcome:
 
 MIT License (MIT)
 
-Copyright (c) 2013 http://coinwidget.com/ 
+Copyright (c) 2013 http://coinwidget.com/
 Copyright (c) 2013 http://scotty.cc/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,13 +43,13 @@ THE SOFTWARE.
 			foreach ($data as $key) {
 				list($instance,$currency,$address) = explode('_',$key);
 				switch ($currency) {
-					case 'bitcoin': 
+					case 'bitcoin':
 						$response = get_bitcoin($address);
 						break;
-					case 'litecoin': 
+					case 'litecoin':
 						$response = get_litecoin($address);
 						break;
-					case 'dash': 
+					case 'dash':
 						$response = get_dash($address);
 						break;
 				}
@@ -76,8 +75,8 @@ THE SOFTWARE.
 	function get_litecoin($address) {
 		$return = array();
 		$data = get_request('http://explorer.litecoin.net/address/'.$address);
-		if (!empty($data) 
-		  && strstr($data, 'Transactions in: ') 
+		if (!empty($data)
+		  && strstr($data, 'Transactions in: ')
 		  && strstr($data, 'Received: ')) {
 		  	$return += array(
 				'count' => (int) parse($data,'Transactions in: ','<br />'),
@@ -86,7 +85,7 @@ THE SOFTWARE.
 		  	return $return;
 		}
 	}
-	
+
 	function get_dash($address) {
 		$return = array();
 		// https://chain.so/api#get-display-data-address
