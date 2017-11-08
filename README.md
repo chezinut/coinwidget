@@ -11,7 +11,7 @@ Donations are welcome and will go towards further development of this project as
 
 
 ## Installation
-A. Grab the latest version from GitHub: https://github.com/chezinut/coinwidget.com
+A. Grab the latest version from GitHub: https://github.com/chezinut/coinwidget
 
 B. Open **widget/coin.js** and find:
 	source: 'http://coinwidget.com/widget/'
