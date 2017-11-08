@@ -1,37 +1,5 @@
 <?php
-
-/**
-Donations welcome:
-	BTC: 122MeuyZpYz4GSHNrF98e6dnQCXZfHJeGS
-	LTC: LY1L6M6yG26b4sRkLv4BbkmHhPn8GR5fFm
-		~ Thank you!
-
-MIT License (MIT)
-
-Copyright (c) 2013 http://coinwidget.com/
-Copyright (c) 2013 http://scotty.cc/
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-*/
-
-	header("Content-type: text/javascript");
+header("Content-type: text/javascript");
 	/*
 		you should server side cache this response, especially if your site is active
 	*/
@@ -59,14 +27,18 @@ THE SOFTWARE.
 		echo 'var COINWIDGETCOM_DATA = '.json_encode($responses).';';
 	}
 
+
 	function get_bitcoin($address) {
 		$return = array();
+		// https://blockchain.info/api/blockchain_api
 		$data = get_request('http://blockchain.info/address/'.$address.'?format=json&limit=0');
+
 		if (!empty($data)) {
 			$data = json_decode($data);
 			$return += array(
 				'count' => (int) $data->n_tx,
 				'amount' => (float) $data->total_received/100000000
+				// 'amount' => (float) $data->final_balance/100000000
 			);
 			return $return;
 		}
@@ -124,3 +96,5 @@ THE SOFTWARE.
 		$string = substr($string, 0, strpos($string,$stop));
 		return $string;
 	}
+
+?>
