@@ -58,13 +58,13 @@ var CoinWidgetCom = {
 			config.counter = 'count';
 		if (!config.alignment || !CoinWidgetCom.in_array(config.alignment,$accepted['alignment']))
 			config.alignment = 'bl';
-+		if (!config.amount || !CoinWidgetCom.in_array(config.amount,$accepted['amount']))
-+			config.amount = 'show';
+		if (!config.amount || !CoinWidgetCom.in_array(config.amount,$accepted['amount']))
+			config.amount = 'show';
 		if (typeof config.qrcode != 'boolean')
 			config.qrcode = true;
-+		if (typeof config.milli != 'boolean') {
-+			config.milli = false;
-+		}
+		if (typeof config.milli != 'boolean') {
+			config.milli = false;
+		}
 		if (typeof config.auto_show != 'boolean')
 			config.auto_show = false;
 		if (!config.wallet_address)
