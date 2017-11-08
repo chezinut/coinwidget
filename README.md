@@ -1,4 +1,4 @@
-# coinwidget.com
+# coinwidget++
 
 *The Bitcoin, Litecoin and Dashcoin Donation Button*
 
