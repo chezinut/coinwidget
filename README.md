@@ -5,12 +5,13 @@ coinwidget.com
 
 CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
 Dashcoin support added by https://github.com/SoulisTech/coinwidget.com
+Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com
 
 Released under the Open Source **MIT License** (see **LICENSE** file for details).
 
-Please help keep this project alive! Tell someone about this widget! 
+Please help keep this project alive! Tell someone about this widget!
 
-Donations are welcome and will go towards further development of this project as well as other crypto related projects. Use the wallet addresses below to donate. 
+Donations are welcome and will go towards further development of this project as well as other crypto related projects. Use the wallet addresses below to donate.
 
 	BTC: 34tCGYAz3nhVHrR2mVghX1CmzCRn42Xjnd
 	LTC: LiQx6gwLwXM8C1EHVAF7DqVdNFvgHgojmj
@@ -72,4 +73,3 @@ See the file: **code-sample.html**
 The complete list of the options and acceptable values can be found on http://coinwidget.com/.
 
 You can also use the wizard on http://coinwidget.com/ to generate linking codes, just be sure to change: `<script src="http://coinwidget.com/widget/coin.js"></script>` to use your own hosted copy of coin.js.
-

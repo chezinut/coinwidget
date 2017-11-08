@@ -9,7 +9,7 @@ Donations welcome:
 
 MIT License (MIT)
 
-Copyright (c) 2013 http://coinwidget.com/ 
+Copyright (c) 2013 http://coinwidget.com/
 Copyright (c) 2013 http://scotty.cc/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -50,6 +50,7 @@ var CoinWidgetCom = {
 		var $accepted = [];
 		$accepted['currencies'] = ['bitcoin','litecoin','dash'];
 		$accepted['counters'] = ['count','amount','hide'];
+		$accepted['amount'] = ['show','hide'];
 		$accepted['alignment'] = ['al','ac','ar','bl','bc','br'];
 		if (!config.currency || !CoinWidgetCom.in_array(config.currency,$accepted['currencies']))
 			config.currency = 'bitcoin';
@@ -57,13 +58,18 @@ var CoinWidgetCom = {
 			config.counter = 'count';
 		if (!config.alignment || !CoinWidgetCom.in_array(config.alignment,$accepted['alignment']))
 			config.alignment = 'bl';
++		if (!config.amount || !CoinWidgetCom.in_array(config.amount,$accepted['amount']))
++			config.amount = 'show';
 		if (typeof config.qrcode != 'boolean')
 			config.qrcode = true;
++		if (typeof config.milli != 'boolean') {
++			config.milli = false;
++		}
 		if (typeof config.auto_show != 'boolean')
 			config.auto_show = false;
 		if (!config.wallet_address)
 			config.wallet_address = 'My '+ config.currency +' wallet_address is missing!';
-		if (!config.lbl_button) 
+		if (!config.lbl_button)
 			config.lbl_button = 'Donate';
 		if (!config.lbl_address)
 			config.lbl_address = 'My Bitcoin Address:';
@@ -82,11 +88,11 @@ var CoinWidgetCom = {
 			CoinWidgetCom.window_resize();
 		});
 		setTimeout(function(){
-			/* this delayed start gives the page enough time to 
+			/* this delayed start gives the page enough time to
 			   render multiple widgets before pinging for counts.
 			*/
 			CoinWidgetCom.build();
-		},800);		
+		},800);
 	}
 	, build: function(){
 		$containers = $("span[data-coinwidget-instance]");
@@ -112,15 +118,15 @@ var CoinWidgetCom = {
 		coin_window = "#COINWIDGETCOM_WINDOW_"+$instance;
 
 			obj = "span[data-coinwidget-instance='"+$instance+"'] > a";
-			/* 	to make alignment relative to the full width of the container instead 
-			of just the button change this occurence of $(obj) to $(obj).parent(), 
+			/* 	to make alignment relative to the full width of the container instead
+			of just the button change this occurence of $(obj) to $(obj).parent(),
 			do the same for the occurences within the switch statement. */
-			$pos = $(obj).offset(); 
+			$pos = $(obj).offset();
 			switch ($config.alignment) {
 				default:
 				case 'al': /* above left */
 					$top = $pos.top - $(coin_window).outerHeight() - 10;
-					$left = $pos.left; 
+					$left = $pos.left;
 					break;
 				case 'ac': /* above center */
 					$top = $pos.top - $(coin_window).outerHeight() - 10;
@@ -132,7 +138,7 @@ var CoinWidgetCom = {
 					break;
 				case 'bl': /* bottom left */
 					$top = $pos.top + $(obj).outerHeight() + 10;
-					$left = $pos.left; 
+					$left = $pos.left;
 					break;
 				case 'bc': /* bottom center */
 					$top = $pos.top + $(obj).outerHeight() + 10;
@@ -158,7 +164,7 @@ var CoinWidgetCom = {
 			if ($config.counter != 'hide')
 				$addresses.push($instance+'_'+$config.currency+'_'+$config.wallet_address);
 			else {
-				if ($config.auto_show) 
+				if ($config.auto_show)
 					$("span[data-coinwidget-instance='"+i+"']").find('> a').click();
 			}
 		});
@@ -172,7 +178,8 @@ var CoinWidgetCom = {
 						$.each(CoinWidgetCom.counter,function(i,v){
 							$config = CoinWidgetCom.config[i];
 							if (!v.count || v == null) v = {count:0,amount:0};
-							$("span[data-coinwidget-instance='"+i+"']").find('> span').html($config.counter=='count'?v.count:(v.amount.toFixed($config.decimals)+' '+$config.lbl_amount));
+							$("span[data-coinwidget-instance='"+i+"']").find('> span').html($config.counter=='count'?v.count:((v.amount*($config.milli ? 1000 : 1))
+							.toFixed($config.decimals)+' '+($config.milli ? 'm':'')+$config.lbl_amount));
 							if ($config.auto_show) {
 								$("span[data-coinwidget-instance='"+i+"']").find('> a').click();
 							}
@@ -203,14 +210,14 @@ var CoinWidgetCom = {
   				  + '<img class="COINWIDGET_INPUT_ICON" src="'+CoinWidgetCom.source+'icon_'+$config.currency+'.png" width="16" height="16" title="This is a '+$config.currency+' wallet address." />'
 				  ;
 			if ($config.counter != 'hide') {
-				$html += '<span class="COINWIDGETCOM_COUNT">0<small>'+$config.lbl_count+'</small></span>'
-				  	  + '<span class="COINWIDGETCOM_AMOUNT end">0.00<small>'+$config.lbl_amount+'</small></span>'
-				  	  ;				  
+				$html += '<span class="COINWIDGETCOM_COUNT">0<small>'+$config.lbl_count+'</small></span>';
+				if ($config.amount != 'hide') {
+					$html += '<span class="COINWIDGETCOM_AMOUNT end">0.00<small>'+($config.milli ? 'm':'')+$config.lbl_amount+'</small></span>';
+				}
 			}
 			if ($config.qrcode) {
 				$html += '<img class="COINWIDGETCOM_QRCODE" data-coinwidget-instance="'+$instance+'" src="'+CoinWidgetCom.source+'icon_qrcode.png" width="16" height="16" />'
-				  	   + '<img class="COINWIDGETCOM_QRCODE_LARGE" src="'+CoinWidgetCom.source+'icon_qrcode.png" width="111" height="111" />'
-				  	   ;
+				  	   + '<img class="COINWIDGETCOM_QRCODE_LARGE" src="'+CoinWidgetCom.source+'icon_qrcode.png" width="111" height="111" />' ;
 			}
 			var $div = $('<div></div>');
 			$('body').append($div);
@@ -260,7 +267,7 @@ var CoinWidgetCom = {
 			$(coin_window).find('.COINWIDGETCOM_COUNT').html($counters.count+ '<small>'+$config.lbl_count+'</small>');
 			$(coin_window).find('.COINWIDGETCOM_AMOUNT').html($counters.amount.toFixed($config.decimals)+ '<small>'+$config.lbl_amount+'</small>');
 		}
-		if (typeof $config.onShow == 'function') 
+		if (typeof $config.onShow == 'function')
 			$config.onShow();
 	}
 	, hide: function($instance) {
@@ -273,7 +280,7 @@ var CoinWidgetCom = {
 	}
 	, in_array: function(needle,haystack) {
 		for (i=0;i<haystack.length;i++) {
-			if (haystack[i] == needle) { 
+			if (haystack[i] == needle) {
 				return true;
 			}
 		}
