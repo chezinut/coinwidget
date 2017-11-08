@@ -1,4 +1,5 @@
 <?php
+
 header("Content-type: text/javascript");
 	/*
 		you should server side cache this response, especially if your site is active
@@ -32,6 +33,7 @@ header("Content-type: text/javascript");
 		$return = array();
 		// https://blockchain.info/api/blockchain_api
 		$data = get_request('http://blockchain.info/address/'.$address.'?format=json&limit=0');
+		// echo 'http://blockchain.info/address/'.$address.'?format=json&limit=0';
 
 		if (!empty($data)) {
 			$data = json_decode($data);
@@ -44,6 +46,7 @@ header("Content-type: text/javascript");
 		}
 	}
 
+/*
 	function get_litecoin($address) {
 		$return = array();
 		$data = get_request('http://explorer.litecoin.net/address/'.$address);
@@ -53,6 +56,21 @@ header("Content-type: text/javascript");
 		  	$return += array(
 				'count' => (int) parse($data,'Transactions in: ','<br />'),
 				'amount' => (float) parse($data,'Received: ','<br />')
+			);
+		  	return $return;
+		}
+	}
+*/
+
+	function get_litecoin($address) {
+		$return = array();
+		// https://www.blockcypher.com/quickstart/
+		$data = get_request('https://api.blockcypher.com/v1/ltc/main/addrs/'.$address);
+		if (!empty($data) ){
+			$data = json_decode($data);
+		  	$return += array(
+				'count' => (int) $data->n_tx,
+				'amount' => (float) $data->final_balance
 			);
 		  	return $return;
 		}
@@ -96,5 +114,3 @@ header("Content-type: text/javascript");
 		$string = substr($string, 0, strpos($string,$stop));
 		return $string;
 	}
-
-?>
