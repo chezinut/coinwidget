@@ -4,8 +4,8 @@ coinwidget.com
 *The Bitcoin, Litecoin and Dashcoin Donation Button*
 
 CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
-Dashcoin support added by https://github.com/SoulisTech/coinwidget.com
-Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com
+Dashcoin support added by https://github.com/SoulisTech/coinwidget.com .
+Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com .
 
 Released under the Open Source **MIT License** (see **LICENSE** file for details).
 
