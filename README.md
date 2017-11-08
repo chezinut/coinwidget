@@ -1,15 +1,6 @@
-coinwidget.com
-==============
+# coinwidget.com
 
 *The Bitcoin, Litecoin and Dashcoin Donation Button*
-
-CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
-Dashcoin support added by https://github.com/SoulisTech/coinwidget.com .
-Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com .
-
-Released under the Open Source **MIT License** (see **LICENSE** file for details).
-
-Please help keep this project alive! Tell someone about this widget!
 
 Donations are welcome and will go towards further development of this project as well as other crypto related projects. Use the wallet addresses below to donate.
 
@@ -19,8 +10,7 @@ Donations are welcome and will go towards further development of this project as
 *Thank you for your support and generosity!*
 
 
-Installation
-==============
+## Installation
 A. Grab the latest version from GitHub: https://github.com/chezinut/coinwidget.com
 
 B. Open **widget/coin.js** and find:
@@ -65,11 +55,25 @@ E. __Customize!__
 F. (optional) Open **lookup.php** and consider implementing a caching method based on your own style and preference.
 
 
-Example Code
-==============
+## Example Code
 
 See the file: **code-sample.html**
 
 The complete list of the options and acceptable values can be found on http://coinwidget.com/.
 
 You can also use the wizard on http://coinwidget.com/ to generate linking codes, just be sure to change: `<script src="http://coinwidget.com/widget/coin.js"></script>` to use your own hosted copy of coin.js.
+
+
+## Authors
+* [scottycc](https://github.com/scottycc)
+* [anselal](https://github.com/anselal)
+* [sebaslogen](https://github.com/sebaslogen)
+* CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
+* Dashcoin support added by https://github.com/SoulisTech/coinwidget.com
+* Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com .
+* blended all together [chezinut](https://github.com/chezinut)
+
+
+## License
+All code is licensed under [The MIT License](http://opensource.org/licenses/MIT) (see **LICENSE** file for details).
+
