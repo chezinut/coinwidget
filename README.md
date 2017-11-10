@@ -74,10 +74,12 @@ You can also use the wizard on http://coinwidget.com/ to generate linking codes,
 * [anselal](https://github.com/anselal)
 * [sebaslogen](https://github.com/sebaslogen)
 * [alvinhkh](https://github.com/alvinhkh)
+* [q--](https://github.com/q--)
 * CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
 * Dashcoin support added by https://github.com/SoulisTech/coinwidget.com
 * Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com
 * Dogecoin support from https://github.com/alvinhkh/CoinWidget/commit/1caf9aa2816b695daa1e5253c3532bde9d889864
+* async loading from https://github.com/scottycc/coinwidget.com/pull/11
 * blended all together [chezinut](https://github.com/chezinut)
 
 
