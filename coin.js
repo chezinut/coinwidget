@@ -4,18 +4,49 @@ var CoinWidgetComCounter = 0;
 
 if (typeof CoinWidgetCom != 'object')
 var CoinWidgetCom = {
-	source: 'http://coinwidget.com/widget/'
+	source: 'http://c4.lt/coinwidget/'
+
+	// ,source_qr=source
+	// use source_qr  fot loading qr codes from google api istead of own hosted php generator
+	,source_qr:'https://chart.googleapis.com/chart?chs=155x155&chld=L|0&cht=qr&chl='
 	, config: []
-	, go :function(config) {
+	, go :function(config, element) {
 		config = CoinWidgetCom.validate(config);
 		CoinWidgetCom.config[CoinWidgetComCounter] = config;
 		CoinWidgetCom.loader.jquery();
-		document.write('<span data-coinwidget-instance="'+CoinWidgetComCounter+'" class="COINWIDGETCOM_CONTAINER"></span>');
+		if((typeof element === 'object' && (element instanceof HTMLElement || (element instanceof NodeList && element.length > 0)
+				|| ( typeof jQuery === 'function' && jQuery(element).length > 0 ))
+			)
+			|| (typeof element === 'string' && (( element.charAt(0) === '#' && document.getElementById(element.substr(1)) !== null )
+				||( element.charAt(0) === '.' && document.getElementsByClassName(element.substr(1))[0] !== null )
+				|| document.getElementById(element) !== null )
+			)
+		){
+			if (typeof element === 'object'){
+				if(element instanceof NodeList)
+					element = element[0];
+				else if (typeof jQuery === 'function')
+					jQuery(element).replaceWith('<span data-coinwidget-instance="'+CoinWidgetComCounter+'" class="COINWIDGETCOM_CONTAINER"></span>');
+			} else if (typeof element === 'string'){
+				if (element.charAt(0) === '#' && document.getElementById(element.substr(1)) !== null)
+					element = document.getElementById(element.substr(1));
+				else if (element.charAt(0) === '.' && document.getElementsByClassName(element.substr(1))[0] !== null)
+					element = document.getElementsByClassName(element.substr(1))[0];
+				else
+					element = document.getElementById('element');
+				var newSpan = document.createElement('span');
+				newSpan.setAttribute("data-coinwidget-instance", CoinWidgetComCounter);
+				newSpan.setAttribute("class", "COINWIDGETCOM_CONTAINER");
+				element.parentNode.replaceChild( newSpan, element );
+			}
+		}else{
+			document.write('<span data-coinwidget-instance="'+CoinWidgetComCounter+'" class="COINWIDGETCOM_CONTAINER"></span>');
+		}
 		CoinWidgetComCounter++;
 	}
 	, validate: function(config) {
 		var $accepted = [];
-		$accepted['currencies'] = ['bitcoin','litecoin','dash'];
+		$accepted['currencies'] = ['bitcoin','litecoin','dash', 'dogecoin'];
 		$accepted['counters'] = ['count','amount','hide'];
 		$accepted['amount'] = ['show','hide'];
 		$accepted['alignment'] = ['al','ac','ar','bl','bc','br'];
@@ -144,7 +175,7 @@ var CoinWidgetCom = {
 						CoinWidgetCom.counter = COINWIDGETCOM_DATA;
 						$.each(CoinWidgetCom.counter,function(i,v){
 							$config = CoinWidgetCom.config[i];
-							if (!v.count || v == null) v = {count:0,amount:0};
+							if (v == null || !v.count) v = {count:0,amount:0};
 								$("span[data-coinwidget-instance='"+i+"']").find('> span').html($config.counter=='count'?v.count:((v.amount*($config.milli ? 1000 : 1)).toFixed($config.decimals)+' '+($config.milli ? 'm':'')+$config.lbl_amount));
 							if ($config.auto_show) {
 								$("span[data-coinwidget-instance='"+i+"']").find('> a').click();
@@ -170,7 +201,7 @@ var CoinWidgetCom = {
 			$html = ''
 				  + '<label>'+$config.lbl_address+'</label>'
 				  + '<input type="text" readonly '+$sel+'  value="'+$config.wallet_address+'" />'
-				  + '<a class="COINWIDGETCOM_CREDITS" href="http://coinwidget.com/" target="_blank">CoinWidget.com</a>'
+				  + '<a class="COINWIDGETCOM_CREDITS" href="https://github.com/chezinut/coinwidget" target="_blank">CoinWidget++</a>'
   				  + '<a class="COINWIDGETCOM_WALLETURI" href="'+$config.currency.toLowerCase()+':'+$config.wallet_address+'" target="_blank" title="Click here to send this address to your wallet (if your wallet is not compatible you will get an empty page, close the white screen and copy the address by hand)" ><img src="'+CoinWidgetCom.source+'icon_wallet.png" /></a>'
   				  + '<a class="COINWIDGETCOM_CLOSER" href="javascript:;" onclick="CoinWidgetCom.hide('+$instance+');" title="Close this window">x</a>'
   				  + '<img class="COINWIDGET_INPUT_ICON" src="'+CoinWidgetCom.source+'icon_'+$config.currency+'.png" width="16" height="16" title="This is a '+$config.currency+' wallet address." />'
@@ -202,7 +233,7 @@ var CoinWidgetCom = {
 						return;
 					}
 					$lrg.attr({
-						src: CoinWidgetCom.source +'qr/?address='+$config.wallet_address
+						src: CoinWidgetCom.source_qr+$config.currency.toLowerCase()+'%3A'+$config.wallet_address
 					}).show();
 				}).bind('mouseleave',function(){
 					$lrg = $(this).parent().find('.COINWIDGETCOM_QRCODE_LARGE');

@@ -21,6 +21,9 @@ header("Content-type: text/javascript");
 					case 'dash':
 						$response = get_dash($address);
 						break;
+					case 'dogecoin':
+						$response = dogecoin($address);
+						break;
 				}
 				$responses[$instance] = $response;
 			}
@@ -45,7 +48,6 @@ header("Content-type: text/javascript");
 			return $return;
 		}
 	}
-
 /*
 	function get_litecoin($address) {
 		$return = array();
@@ -87,6 +89,20 @@ header("Content-type: text/javascript");
 				'amount' => (float) $data->data->balance
 			);
 			return $return;
+		}
+	}
+
+	function get_dogecoin($address) {
+		$return = array();
+		$data = get_request('http://dogechain.info/address/'.$address.);
+		if (!empty($data)
+		  && strstr($data, 'Transactions in: ')
+		  && strstr($data, 'Received: ')) {
+		  	$return += array(
+				'count' => (int) parse($data,'Transactions in: ','<br />'),
+				'amount' => (float) parse($data,'Received: ','<br />')
+			);
+		  	return $return;
 		}
 	}
 

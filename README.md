@@ -1,13 +1,14 @@
 # coinwidget++
 
-*The Bitcoin, Litecoin and Dashcoin Donation Button*
+*The Bitcoin, Litecoin, Dogecoin and Dashcoin Donation Button*
 
 Donations are welcome and will go towards further development of this project as well as other crypto related projects. Use the wallet addresses below to donate.
 
 	BTC: 34tCGYAz3nhVHrR2mVghX1CmzCRn42Xjnd
 	LTC: LiQx6gwLwXM8C1EHVAF7DqVdNFvgHgojmj
+	DOGE: DAiPWww7JFK8pJV8c2SaXVugLHgWmU5yey
 
-*Thank you for your support and generosity!*
+*Thank you for your support !*
 
 
 ## Installation
@@ -22,7 +23,11 @@ C. Include *js* and *css* in the head of the page.
 	<script type="text/javascript" src="./res/coin.js"></script>
 
 D. Paste this code where you want to see the button
+```html
+<div id="load_here"></div>
+```
 
+and to end of html goes
 ```html
 <script type="text/javascript">
 	CoinWidgetCom.go({
@@ -37,7 +42,7 @@ D. Paste this code where you want to see the button
 		, lbl_address: "Donate Bitcoin to this Address:"
 		, lbl_count: "donations"
 		, lbl_amount: "BTC"
-	});
+	}, "#load_here");
 </script>
 ```
 
@@ -68,12 +73,13 @@ You can also use the wizard on http://coinwidget.com/ to generate linking codes,
 * [scottycc](https://github.com/scottycc)
 * [anselal](https://github.com/anselal)
 * [sebaslogen](https://github.com/sebaslogen)
+* [alvinhkh](https://github.com/alvinhkh)
 * CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
 * Dashcoin support added by https://github.com/SoulisTech/coinwidget.com
-* Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com .
+* Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com
+* Dogecoin support from https://github.com/alvinhkh/CoinWidget/commit/1caf9aa2816b695daa1e5253c3532bde9d889864
 * blended all together [chezinut](https://github.com/chezinut)
 
 
 ## License
 All code is licensed under [The MIT License](http://opensource.org/licenses/MIT) (see **LICENSE** file for details).
-
