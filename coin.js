@@ -4,7 +4,7 @@ var CoinWidgetComCounter = 0;
 
 if (typeof CoinWidgetCom != 'object')
 var CoinWidgetCom = {
-	source: 'http://c4.lt/coinwidget/'
+	source: '//c4.lt/coinwidget/'
 
 	// ,source_qr=source
 	// use source_qr  fot loading qr codes from google api istead of own hosted php generator
@@ -256,14 +256,14 @@ var CoinWidgetCom = {
 		$(coin_window).find('.COINWIDGETCOM_WALLETURI').css({'top':$pos.top+3,'left':$pos.left+$(coin_window).find('input').outerWidth()+3});
 		if ($config.counter != 'hide') {
 			$counters = CoinWidgetCom.counter[$instance];
-			if ($counters == null) {
+			if ($counters === null) {
 				$counters = {
 					count: 0,
 					amount: 0
 				};
 			}
-		 	if ($counters.count == null) $counters.count = 0;
-		 	if ($counters.amount == null) $counters.amount = 0;
+		 	if ($counters.count === null) $counters.count = 0;
+		 	if ($counters.amount === null) $counters.amount = 0;
 			$(coin_window).find('.COINWIDGETCOM_COUNT').html($counters.count+ '<small>'+$config.lbl_count+'</small>');
 			$(coin_window).find('.COINWIDGETCOM_AMOUNT').html($counters.amount.toFixed($config.decimals)+ '<small>'+$config.lbl_amount+'</small>');
 		}
