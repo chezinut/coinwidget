@@ -75,6 +75,7 @@ You can also use the wizard on http://coinwidget.com/ to generate linking codes,
 * [sebaslogen](https://github.com/sebaslogen)
 * [alvinhkh](https://github.com/alvinhkh)
 * [q--](https://github.com/q--)
+* [kabili207](https://github.com/kabili207)
 * CoinWidget was created by http://scotty.cc/ visit http://coinwidget.com/ for full documentation, demo, and a link code wizard.
 * Dashcoin support added by https://github.com/SoulisTech/coinwidget.com
 * Add options: milli units and hide amount by https://github.com/sebaslogen/coinwidget.com
