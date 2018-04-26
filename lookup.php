@@ -24,6 +24,9 @@ header("Content-type: text/javascript");
 					case 'dogecoin':
 						$response = dogecoin($address);
 						break;
+					case 'ethereum':
+						$response = get_ethereum($address);
+						break;
 				}
 				$responses[$instance] = $response;
 			}
@@ -97,6 +100,19 @@ header("Content-type: text/javascript");
 		$data = get_request('http://dogechain.info/address/'.$address.);
 		if (!empty($data)
 		  && strstr($data, 'Transactions in: ')
+		  && strstr($data, 'Received: ')) {
+		  	$return += array(
+				'count' => (int) parse($data,'Transactions in: ','<br />'),
+				'amount' => (float) parse($data,'Received: ','<br />')
+			);
+		  	return $return;
+		}
+	}
+	function get_ethereum($address) {
+		$return = array();
+		$data = get_request('https://etherscan.io/tx/'.$address);
+		if (!empty($data) 
+		  && strstr($data, 'Transactions in: ') 
 		  && strstr($data, 'Received: ')) {
 		  	$return += array(
 				'count' => (int) parse($data,'Transactions in: ','<br />'),

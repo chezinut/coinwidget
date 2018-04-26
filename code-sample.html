@@ -9,6 +9,7 @@
 	<div id="ltc"></div>
 	<div id="dash"></div>
 	<div id="doge"></div>
+	<div id="eth"></div>
 
 	<script type="text/javascript">
 		CoinWidgetCom.go({
@@ -69,6 +70,20 @@
 			, lbl_amount: "DOGE"
 			, amount: "show"
 		}, "#doge");
+		
+		CoinWidgetCom.go({
+			wallet_address: "0xeca54fa2a762048b88b17feb48756cd0bf64948d"
+			, currency: "ethereum"
+			, counter: "count"
+			, alignment: "bl"
+			, qrcode: true
+			, auto_show: false
+			, lbl_button: "Donate ether "
+			, lbl_address: "Donate Ethereum to this Address:"
+			, lbl_count: "donations"
+			, lbl_amount: "ETH"
+			, amount: "show"
+		}, "#eth");
 	</script>
 </body>
 </html>

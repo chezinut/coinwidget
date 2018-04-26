@@ -49,7 +49,7 @@ var CoinWidgetCom = {
 	}
 	, validate: function(config) {
 		var $accepted = [];
-		$accepted['currencies'] = ['bitcoin','litecoin','dash', 'dogecoin'];
+		$accepted['currencies'] = ['bitcoin','litecoin','dash','ethereum', 'dogecoin'];
 		$accepted['counters'] = ['count','amount','hide'];
 		$accepted['amount'] = ['show','hide'];
 		$accepted['alignment'] = ['al','ac','ar','bl','bc','br'];
